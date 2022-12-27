@@ -1,6 +1,7 @@
 import json
 import difflib
 import colorama
+import sympy
 
 
 with open('data.json', 'r') as f:
@@ -34,13 +35,11 @@ def check(question):
     return "I need more context."
 
 
-
-
 def main():
   user = input(color.red + "[Question]> ")
   try:
-      result = eval(user)
-      print(result)
+      result = sympy.sympify(user).evalf()
+      print(int(result))
       
   except:
       if check(user):
